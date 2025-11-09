@@ -15,7 +15,7 @@ class AhoyCaptain::ComparisonLinkComponent < ViewComponent::Base
 
   # cheating
   def title
-    self.with_link_content(options_for_option)
+    with_link(options_for_option)
 
     comparison_mode.label
   end
@@ -26,10 +26,10 @@ class AhoyCaptain::ComparisonLinkComponent < ViewComponent::Base
 
   def options_for_option
     [
-      (link_to "Custom period", "javascript:customComparisonModal.showModal()", class: selected(:custom)),
-      (link_to "Year-over-year", AhoyCaptain::Engine.routes.url_helpers.root_path(**helpers.search_params.merge(comparison: :year)), class: selected(:year)),
-      (link_to "Previous period", AhoyCaptain::Engine.routes.url_helpers.root_path(**helpers.search_params.merge(comparison: :previous)), class: selected(:previous, :true)),
-      (link_to "Disable Comparison", AhoyCaptain::Engine.routes.url_helpers.root_path(**helpers.search_params.merge(comparison: false))),
+      (helpers.link_to "Custom period", "javascript:customComparisonModal.showModal()", class: selected(:custom)),
+      (helpers.link_to "Year-over-year", AhoyCaptain::Engine.routes.url_helpers.root_path(**helpers.search_params.merge(comparison: :year)), class: selected(:year)),
+      (helpers.link_to "Previous period", AhoyCaptain::Engine.routes.url_helpers.root_path(**helpers.search_params.merge(comparison: :previous)), class: selected(:previous, :true)),
+      (helpers.link_to "Disable Comparison", AhoyCaptain::Engine.routes.url_helpers.root_path(**helpers.search_params.merge(comparison: false))),
 
     ].reverse.join.html_safe
   end
